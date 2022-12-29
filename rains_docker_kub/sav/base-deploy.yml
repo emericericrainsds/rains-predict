@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: base-rains-predict-deployment
+  labels:
+    app: base-rains-predict
+
+spec:
+
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: base-rains-predict
+
+  template:
+    metadata: 
+      labels: 
+        app: base-rains-predict
+        
+    spec:  
+      containers:
+
+      - name: base-rains-predict
+        image: eengies/base-rains-predict:0.0.1
+        env:
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "postgres"
+        - name: PGDATA
+          value: "/var/lib/postgresql/data/pgdata"
+        ports:
+        - cont ngainerPort: 5432
+

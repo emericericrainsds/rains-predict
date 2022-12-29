@@ -1,0 +1,10 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-api-rains-predict
+spec:
+  defaultBackend:
+    service:
+      name: service-api-rains-predict
+      port:
+        number: 8002

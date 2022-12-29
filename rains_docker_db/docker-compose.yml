@@ -1,0 +1,32 @@
+version: "3"
+
+networks :
+  my_network :
+    driver : bridge
+
+services:
+  api:
+    build: ./api/
+    image: api-rains-predict
+    container_name: api-rains-predict
+    ports:
+      - "8002:8000"
+
+  database:
+    build: ./db/
+    image: db-rains-predict
+    container_name: db-rains-predict
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes: 
+      - db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  db:
+    driver: local
+

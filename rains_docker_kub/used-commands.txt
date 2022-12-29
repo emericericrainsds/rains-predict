@@ -1,0 +1,107 @@
+
+########## Create Images base-rains-predict / api-rains-predict
+
+docker-compose up -d
+docker image ls
+docker container ls
+docker exec -it b8f3b69f5c30 bash
+docker exec -it f9afac6d2c09 bash                   
+docker compose down
+
+
+##########  push to hub.docker.com ( you must hav a hub.docker.com account)
+
+docker tag api-rains-predict eengies/api-rains-predict:0.0.1
+docker tag base-rains-predict eengies/base-rains-predict:0.0.1
+docker push eengies/base-rains-predict:0.0.1
+docker push eengies/api-rains-predict:0.0.1
+
+# verify on your account 
+# https://hub.docker.com/repositories
+
+
+
+
+############ init minikube + kubernetes
+
+minikube start
+minikube dashboard --url=true #blocking
+kubectl proxy --address='0.0.0.0' --disable-filter=true  #blocking
+#### open kubernates
+# http://127.0.0.1:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/workloads?namespace=default
+
+
+
+########## image build + pull
+
+minikube image pull eengies/api-rains-predict:0.0.1
+minikube image pull eengies/base-rains-predict:0.0.1
+minikube image ls
+
+
+
+########### service
+
+kubectl create -f my-service-eval.yml
+
+
+########### ingress
+
+minikube addons enable ingress
+kubectl create -f my-ingress-eval.yml
+kubectl get ingress
+
+# ingress-apifastapi-mysql        nginx   *       192.168.49.2   80      12m
+# http://http://192.168.49.2/docs#/
+
+
+
+
+
+########### secret
+
+#https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-config-file/
+
+echo -n datascientest1234 | base64
+# ZGF0YXNjaWVudGVzdDEyMzQ=
+kubectl create -f my-secret-eval.yml 
+# NOK kubectl create secret generic secret-apifastapi-mysql --from-literal sql-pwd=datascientest1234
+
+kubectl get secret secret-apifastapi-mysql -o jsonpath='{.data.sql-pwd}' | base64 --decode
+## .... datascientest1234
+ 
+
+
+
+########## deploy
+
+kubectl create -f my-deployment-eval.yml
+# kubectl delete deployment my-deployment-eval
+# kubectl rollout restart deployment my-deployment-eval
+
+
+
+########### test api
+
+kubectl get ingress
+# ingress-apifastapi-mysql   nginx   *       192.168.49.2   80      12m
+# .... http://192.168.49.2:80/docs
+
+#curl -X GET -i http://192.168.49.2:80/RainsPredict/2012-01-13:Perth:23.8:34.9:0:13.2:12.4:NE:39:ENE:ENE:19:15:51:37:1013:1009.4:0:4:27.6:33.1:No
+
+########## test image ... run + exec image
+
+eval $(minikube docker-env) 
+minikube image load  docker.io/eengies/apifastapi:0.0.1
+kubectl run apifastapi --image=docker.io/eengies/apifastapi:0.0.1 --image-pull-policy=Never
+kubectl get pods
+kubectl exec apifastapi -it  -- bash
+
+kubectl describe pods
+kubectl exec -it rains-predict-c4bf79db7-f4kbd  --container  api-rains-predict   -- /bin/bash
+
+
+
+
+
+

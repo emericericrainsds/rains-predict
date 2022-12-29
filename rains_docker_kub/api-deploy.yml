@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: api-rains-predict
+  labels:
+    app: api-rains-predict
+
+spec:
+
+  replicas: 2
+  selector: 
+    matchLabels:
+      app: api-rains-predict
+
+  template:
+    metadata: 
+      labels: 
+        app: api-rains-predict
+        
+    spec:  
+      containers:
+
+      - name: api-rains-predict
+        image: docker.io/library/api-rains-predict:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000
+
+

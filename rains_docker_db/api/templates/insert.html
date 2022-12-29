@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INSERT ROW</title>
+</head>
+<body>
+<form method="post">
+
+    <label>Date</label>
+    <input type="text" name="Date" value="{{ Date }}"/><br>
+    
+    <label>Location</label>
+    <input type="text" name="Location" value="{{ Location }}"/><br>
+    
+    <label>MinTemp</label>
+    <input type="number" name="MinTemp" value="{{ MinTemp }}"/><br>
+    
+    <label>MaxTemp</label>
+    <input type="number" name="MaxTemp" value="{{ MaxTemp }}"/><br>
+    
+    <label>Rainfall</label>
+    <input type="number" name="Rainfall" value="{{ Rainfall }}"/><br>
+    
+    <label>Evaporation</label>
+    <input type="number" name="Evaporation" value="{{ Evaporation }}"/><br>
+    
+    <label>Sunshine</label>
+    <input type="number" name="Sunshine" value="{{ Sunshine }}"/><br>
+    
+    <label>WindGustDir</label>
+    <input type="text" name="WindGustDir" value="{{ WindGustDir }}"/><br>
+    
+    <label>WindGustSpeed</label>
+    <input type="number" name="WindGustSpeed" value="{{ WindGustSpeed }}"/><br>
+    
+    <label>WindDir9am</label>
+    <input type="text" name="WindDir9am" value="{{ WindDir9am }}"/><br>
+    
+    <label>WindDir3pm</label>
+    <input type="text" name="WindDir3pm" value="{{ WindDir3pm }}"/><br>
+    
+    <label>WindSpeed9am</label>
+    <input type="number" name="WindSpeed9am" value="{{ WindSpeed9am }}"/><br>
+    
+    <label>WindSpeed3pm</label>
+    <input type="number" name="WindSpeed3pm" value="{{ WindSpeed3pm }}"/><br>
+    
+    <label>Humidity9am</label>
+    <input type="number" name="Humidity9am" value="{{ Humidity9am }}"/><br>
+    
+    <label>Humidity3pm</label>
+    <input type="number" name="Humidity3pm" value="{{ Humidity3pm }}"/><br>
+    
+    <label>Pressure9am</label>
+    <input type="number" name="Pressure9am" value="{{ Pressure9am }}"/><br>
+    
+    <label>Pressure3pm</label>
+    <input type="number" name="Pressure3pm" value="{{ Pressure3pm }}"/><br>
+    
+    <label>Cloud9am</label>
+    <input type="number" name="Cloud9am" value="{{ Cloud9am }}"/><br>
+    
+    <label>Cloud3pm</label>
+    <input type="number" name="Cloud3pm" value="{{ Cloud3pm }}"/><br>
+    
+    <label>Temp9am</label>
+    <input type="number" name="Temp9am" value="{{ Temp9am }}"/><br>
+    
+    <label>Temp3pm</label>
+    <input type="number" name="Temp3pm" value="{{ Temp3pm }}"/><br>
+    
+    <label>RainToday</label>
+    <input type="text" name="RainToday" value="{{ RainToday }}"/><br>
+    
+    <label>RainTomorrow</label>
+    <input type="text" name="RainTomorrow" value="{{ RainTomorrow }}"/><br>  
+      
+    <input type="submit">
+</form>
+<p>Result: {{ result }}</p>
+</body>
+</html>
