@@ -1,5 +1,0 @@
-# init
-docker-compose up -d
-
-# use
-http://localhost:8002/docs

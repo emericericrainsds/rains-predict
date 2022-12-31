@@ -1,10 +1,12 @@
-# Le répertoire 'rains_docker' permet une mise en oeuvre simple des modèle au travers d'une api
+#  Le répertoire 'rains_docker_db' complète 'rains_docker' par une base de données permettant de charger la base csv de base ainsi
+#  que de l'enrichir par de nouveaux enregistrements
 
 # génération et run du conteneur api:
 docker-compose up -d --build
 
-#verification
+# verification
 docker container ls
+# 11f3cc3ea865   db-rains-predict    "docker-entrypoint.s…
 # 3ea45ee9db6a   api-rains-predict   "/bin/sh -c 'uvicorn…
 
 
