@@ -23,7 +23,7 @@ spec:
       containers:
 
       - name: api-rains-predict
-        image: docker.io/library/api-rains-predict:latest
+        image: docker.io/library/api-rains-predict-kub:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 8000

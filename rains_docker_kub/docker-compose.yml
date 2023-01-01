@@ -4,6 +4,6 @@ version: "3"
 services:
   api:
     build: ./
-    image: api-rains-predict
+    image: api-rains-predict-kub
 
 
