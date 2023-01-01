@@ -15,7 +15,8 @@
     à partir de la page web de votre 'google drive' rentrer dans ce répertoire et
     ouvrir le fichier 'Modelisation.ipynb' avec 'google colaboratory'.
 
-    3) dans la rubrique 'Bibliothèque logicielle/Variables globales', modifier la variable 'g_['gdrive_path']'
+    3) dans la rubrique 'Audit, exploration et nettoyage des données/Chargement des données', modifier le path ( '%cd ...' )
+    exemple: %cd '/content/drive/My Drive/rains_model'
     afin d'indiquer le path de 'rains_model' dans votre 'Google Drive'.
 
     4)Replier 'Bibliothèque logicielle' et lancer toutes ses cellules
